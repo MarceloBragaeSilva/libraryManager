@@ -6,7 +6,7 @@ import java.util.List;
 import com.ensta.librarymanager.exception.DaoException;
 import com.ensta.librarymanager.modele.Emprunt;
 
-public interface EmpruntDao {
+public interface IEmpruntDao {
 	public List<Emprunt> getList() throws DaoException;
 	public List<Emprunt> getListCurrent() throws DaoException;
 	public List<Emprunt> getListCurrentByMembre(int idMembre) throws DaoException;
