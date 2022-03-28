@@ -121,7 +121,6 @@ public class MembreDao implements IMembreDao{
             Connection connection = ConnectionManager.getConnection();
             PreparedStatement stmt = connection.prepareStatement("UPDATE membre SET nom = ?, prenom = ?,"+
             " adresse = ?, email = ?, telephone = ?, abonnement = ? WHERE id = ?;");
-            
             stmt.setString(1, membre.getNom());
             stmt.setString(2, membre.getPrenom());
             stmt.setString(3, membre.getAdresse());

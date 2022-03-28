@@ -84,8 +84,8 @@ public class EmpruntDao implements IEmpruntDao{
         try{
             Connection connection = ConnectionManager.getConnection();
             PreparedStatement stmt = connection.prepareStatement("SELECT e.id AS id, idMembre, nom, prenom, adresse, email,"+
-            "telephone, abonnement, idLivre, titre, auteur, isbn, dateEmprunt, dateRetour FROM emprunt AS e"+
-            "INNER JOIN membre ON membre.id = e.idMembre INNER JOIN livre ON livre.id = e.idLivre WHERE dateRetour IS NULL AND membre.id = ?;");
+            " telephone, abonnement, idLivre, titre, auteur, isbn, dateEmprunt, dateRetour FROM emprunt AS e INNER JOIN membre"+
+            " ON membre.id = e.idMembre INNER JOIN livre ON livre.id = e.idLivre WHERE dateRetour IS NULL AND membre.id = ?;");
             stmt.setInt(1,idMembre);
             ResultSet resultSet = stmt.executeQuery();
             List<Emprunt> listCurrentByMembre = new ArrayList<Emprunt>();

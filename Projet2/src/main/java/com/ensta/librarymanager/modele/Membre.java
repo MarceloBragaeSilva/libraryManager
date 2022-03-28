@@ -1,5 +1,7 @@
 package com.ensta.librarymanager.modele;
 
+import java.security.Key;
+
 import org.h2.util.AbbaLockingDetector;
 
 public class Membre {
@@ -56,7 +58,7 @@ public class Membre {
 
     @Override
     public String toString() {
-        return "|" + nom + "|" + prenom + "|" + adresse
+        return "|"+primary_key+"|" + nom + "|" + prenom + "|" + adresse
         + "|" + email + "|" + telephone + "|" + abonnement + "|";
     }
 }

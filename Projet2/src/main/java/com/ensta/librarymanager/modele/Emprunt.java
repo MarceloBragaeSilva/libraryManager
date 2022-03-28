@@ -36,14 +36,14 @@ public class Emprunt {
     public void setKey(int primary_key){this.primary_key=primary_key;}
     public void setMembre(Membre membre){this.membre=membre;}
     public void setLivre(Livre livre){this.livre=livre;}
-    public void setDatEmprunt(LocalDate date){this.dateEmprunt=date;}
-    public void setDatRetour(LocalDate date){this.dateRetour=date;}
+    public void setDateEmprunt(LocalDate date){this.dateEmprunt=date;}
+    public void setDateRetour(LocalDate date){this.dateRetour=date;}
 
 
 
     @Override
     public String toString() {
-        return "|" + membre.getNom() + "|" + livre.getTitre() + "|" + dateEmprunt
+        return "|"+primary_key+"|" + membre.getNom() + "|" + livre.getTitre() + "|" + dateEmprunt
         + "|" + dateRetour + "|";
     }
 }

@@ -37,6 +37,6 @@ public class Livre {
 
     @Override
     public String toString() {
-        return "|" + titre + "|" + auteur + "|" + isbn + "|";
+        return "|" +primary_key+"|"+ titre + "|" + auteur + "|" + isbn + "|";
     }
 }
