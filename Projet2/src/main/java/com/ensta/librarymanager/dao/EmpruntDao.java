@@ -93,13 +93,13 @@ public class EmpruntDao implements IEmpruntDao{
             MembreDao membreDao = MembreDao.getInstance();
             LivreDao livreDao = LivreDao.getInstance();
 
-            resultSet.next();
+            while(resultSet.next()){
 
-            int id = resultSet.getInt("id");
-            int idMembre_1 = resultSet.getInt("idMembre");
-            listCurrentByMembre.add(new Emprunt(resultSet.getInt("id"), membreDao.getById(resultSet.getInt("idMembre")), livreDao.getById(resultSet.getInt("idLivre")),
-            resultSet.getDate("dateEmprunt").toLocalDate(), resultSet.getDate("dateRetour") == null ? null : resultSet.getDate("dateRetour").toLocalDate()));
-            
+                int id = resultSet.getInt("id");
+                int idMembre_1 = resultSet.getInt("idMembre");
+                listCurrentByMembre.add(new Emprunt(resultSet.getInt("id"), membreDao.getById(resultSet.getInt("idMembre")), livreDao.getById(resultSet.getInt("idLivre")),
+                resultSet.getDate("dateEmprunt").toLocalDate(), resultSet.getDate("dateRetour") == null ? null : resultSet.getDate("dateRetour").toLocalDate()));
+            }
 
             resultSet.close();
             stmt.close();
@@ -112,7 +112,33 @@ public class EmpruntDao implements IEmpruntDao{
         }
     }
 	public List<Emprunt> getListCurrentByLivre(int idLivre) throws DaoException{
-        return null;
+        try{
+            Connection connection = ConnectionManager.getConnection();
+            PreparedStatement stmt = connection.prepareStatement("SELECT e.id AS id, idMembre, nom, prenom, adresse, email,"+
+            " telephone, abonnement, idLivre, titre, auteur, isbn, dateEmprunt, dateRetour FROM emprunt AS e"+
+            " INNER JOIN membre ON membre.id = e.idMembre INNER JOIN livre ON livre.id = e.idLivre WHERE dateRetour IS NULL AND livre.id = ?;");
+            stmt.setInt(1,idLivre);
+            ResultSet resultSet = stmt.executeQuery();
+            List<Emprunt> listCurrentByLivre = new ArrayList<Emprunt>();
+
+            MembreDao membreDao = MembreDao.getInstance();
+            LivreDao livreDao = LivreDao.getInstance();
+
+            while(resultSet.next()){
+
+                listCurrentByLivre.add(new Emprunt(resultSet.getInt("id"), membreDao.getById(resultSet.getInt("idMembre")), livreDao.getById(resultSet.getInt("idLivre")),
+                resultSet.getDate("dateEmprunt").toLocalDate(), resultSet.getDate("dateRetour") == null ? null : resultSet.getDate("dateRetour").toLocalDate()));
+            }
+
+            resultSet.close();
+            stmt.close();
+            connection.close();
+
+            return listCurrentByLivre;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DaoException();
+        }
     }
 	public Emprunt getById(int id) throws DaoException{
         try{
