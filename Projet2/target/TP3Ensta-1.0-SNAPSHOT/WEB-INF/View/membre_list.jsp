@@ -25,25 +25,28 @@
             <thead>
               <tr>
                 <th>Nom</th>
-                <th>Prénom</th>
+                <th>Prenom</th>
                 <th class="hide-on-small-only">Adresse</th>
                 <th class="hide-on-small-only">E-mail</th>
-                <th class="hide-on-small-only">Téléphone</th>
-                <th>Détails</th>
+                <th class="hide-on-small-only">Telephone</th>
+                <th>Details</th>
               </tr>
             </thead>
             <tbody>
+              <c:if test="${!list_membre.isEmpty()}">
+                <c:forEach items="${list_membre}" var="membre">
+                  <tr>
+                    <td>${membre.nom}</td>
+                    <td>${membre.prenom}</td>
+                    <td class="hide-on-small-only">${membre.adresse}</td>
+                    <td class="hide-on-small-only">${membre.email}</td>
+                    <td class="hide-on-small-only">${membre.telephone}</td>
+                    <td class="center"><a href="membre_details?id=${membre.key}"><ion-icon class="details" name="information-circle-outline"></ion-icon></a></td>
+                  </tr>
+                </c:forEach>
+              </c:if>
 
-              <tr>
-                <td>Nom du membre</td>
-                <td>Prénom du membre</td>
-                <td class="hide-on-small-only">Adresse du membre</td>
-                <td class="hide-on-small-only">E-mail du membre</td>
-                <td class="hide-on-small-only">Téléphone du membre</td>
-                <td class="center"><a href="membre_details?id=idDuMembre"><ion-icon class="details" name="information-circle-outline"></ion-icon></a></td>
-              </tr>
-
-              <!-- TODO : parcourir la liste des membres et les afficher selon la structure d'exemple ci-dessus -->
+              <!-- : parcourir la liste des membres et les afficher selon la structure d'exemple ci-dessus -->
             </tbody>
           </table>
         </div>

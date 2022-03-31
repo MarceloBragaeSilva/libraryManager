@@ -1,7 +1,7 @@
   <footer class="page-footer">
     <div class="footer-copyright">
       <div class="container">
-        Design © 2017 Farooq Designs. All rights reserved.
+        Design ï¿½ 2017 Farooq Designs. All rights reserved. Library Manager by Marcelo BRAGA E SILVA.
       </div>
     </div>
   </footer>

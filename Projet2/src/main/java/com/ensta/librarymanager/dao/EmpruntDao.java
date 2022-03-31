@@ -11,7 +11,6 @@ import com.ensta.librarymanager.exception.DaoException;
 import com.ensta.librarymanager.modele.*;
 import com.ensta.librarymanager.persistence.ConnectionManager;
 import java.sql.Connection;
-import java.sql.Date;
 
 public class EmpruntDao implements IEmpruntDao{
 
@@ -36,9 +35,6 @@ public class EmpruntDao implements IEmpruntDao{
             MembreDao membreDao = MembreDao.getInstance();
             LivreDao livreDao = LivreDao.getInstance();
             while(resultSet.next()){
-                int id = resultSet.getInt("id");
-                int idMembre = resultSet.getInt("idMembre");
-                int idLivre = resultSet.getInt("idLivre");
                 list_emprunt.add(new Emprunt(resultSet.getInt("id"), membreDao.getById(resultSet.getInt("idMembre")), livreDao.getById(resultSet.getInt("idLivre")), resultSet.getDate("dateEmprunt").toLocalDate(), resultSet.getDate("dateRetour") == null ? null : resultSet.getDate("dateRetour").toLocalDate()));
             }
             resultSet.close();
@@ -51,8 +47,8 @@ public class EmpruntDao implements IEmpruntDao{
             e.printStackTrace();
             throw new DaoException();
         }
-
     }
+
 	public List<Emprunt> getListCurrent() throws DaoException{
         try{
             Connection connection = ConnectionManager.getConnection();
@@ -80,6 +76,7 @@ public class EmpruntDao implements IEmpruntDao{
             throw new DaoException();
         }
     }
+
 	public List<Emprunt> getListCurrentByMembre(int idMembre) throws DaoException{
         try{
             Connection connection = ConnectionManager.getConnection();
@@ -95,8 +92,6 @@ public class EmpruntDao implements IEmpruntDao{
 
             while(resultSet.next()){
 
-                int id = resultSet.getInt("id");
-                int idMembre_1 = resultSet.getInt("idMembre");
                 listCurrentByMembre.add(new Emprunt(resultSet.getInt("id"), membreDao.getById(resultSet.getInt("idMembre")), livreDao.getById(resultSet.getInt("idLivre")),
                 resultSet.getDate("dateEmprunt").toLocalDate(), resultSet.getDate("dateRetour") == null ? null : resultSet.getDate("dateRetour").toLocalDate()));
             }
@@ -111,6 +106,7 @@ public class EmpruntDao implements IEmpruntDao{
             throw new DaoException();
         }
     }
+
 	public List<Emprunt> getListCurrentByLivre(int idLivre) throws DaoException{
         try{
             Connection connection = ConnectionManager.getConnection();
@@ -140,6 +136,7 @@ public class EmpruntDao implements IEmpruntDao{
             throw new DaoException();
         }
     }
+
 	public Emprunt getById(int id) throws DaoException{
         try{
             Connection connection = ConnectionManager.getConnection();
@@ -166,6 +163,7 @@ public class EmpruntDao implements IEmpruntDao{
             throw new DaoException();
         }
     }
+
 	public void create(int idMembre, int idLivre, LocalDate dateEmprunt) throws DaoException{
         try{
             Connection connection = ConnectionManager.getConnection();
@@ -184,6 +182,7 @@ public class EmpruntDao implements IEmpruntDao{
             throw new DaoException();
         }
     }
+    
 	public void update(Emprunt emprunt) throws DaoException{
         try{
             Connection connection = ConnectionManager.getConnection();

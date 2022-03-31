@@ -1,6 +1,5 @@
 package com.ensta.librarymanager.dao;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import com.ensta.librarymanager.exception.DaoException;

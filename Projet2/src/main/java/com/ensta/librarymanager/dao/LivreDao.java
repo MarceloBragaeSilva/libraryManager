@@ -32,11 +32,11 @@ public class LivreDao implements ILivreDao{
             ResultSet resultSet = stmt.executeQuery();
 
             while(resultSet.next()){
-            int id = resultSet.getInt("id");
-            String titre = resultSet.getString("titre");
-            String auteur = resultSet.getString("auteur");
-            String isbn = resultSet.getString("isbn");
-            livres.add(new Livre(id,titre, auteur, isbn));
+                int id = resultSet.getInt("id");
+                String titre = resultSet.getString("titre");
+                String auteur = resultSet.getString("auteur");
+                String isbn = resultSet.getString("isbn");
+                livres.add(new Livre(id,titre, auteur, isbn));
             }
 
             resultSet.close();
@@ -76,7 +76,6 @@ public class LivreDao implements ILivreDao{
         }
     }
 
-
 	public int create(String titre, String auteur, String isbn) throws DaoException{
         try{
             Connection connection = ConnectionManager.getConnection();
@@ -102,6 +101,7 @@ public class LivreDao implements ILivreDao{
         }
 
     }
+
 	public void update(Livre livre) throws DaoException{
         try{
             Connection connection = ConnectionManager.getConnection();
@@ -119,6 +119,7 @@ public class LivreDao implements ILivreDao{
             throw new DaoException();
         }
     }
+
 	public void delete(int id) throws DaoException{
         try{
             Connection connection = ConnectionManager.getConnection();
@@ -133,6 +134,7 @@ public class LivreDao implements ILivreDao{
             throw new DaoException();
         }
     }
+
 	public int count() throws DaoException{
         try{
             Connection connection = ConnectionManager.getConnection();
@@ -155,4 +157,5 @@ public class LivreDao implements ILivreDao{
             throw new DaoException();
         }
     }
+    
 }

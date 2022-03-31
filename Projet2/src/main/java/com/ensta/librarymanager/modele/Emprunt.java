@@ -9,9 +9,7 @@ public class Emprunt {
     private LocalDate dateEmprunt;
     private LocalDate dateRetour;
 
-
     public Emprunt(){}
-
 
     public Emprunt(Membre membre, Livre livre, LocalDate dateE, LocalDate dateR){
         this.membre = membre;
@@ -38,8 +36,6 @@ public class Emprunt {
     public void setLivre(Livre livre){this.livre=livre;}
     public void setDateEmprunt(LocalDate date){this.dateEmprunt=date;}
     public void setDateRetour(LocalDate date){this.dateRetour=date;}
-
-
 
     @Override
     public String toString() {

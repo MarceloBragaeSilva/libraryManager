@@ -90,6 +90,7 @@ public class MembreService implements IMembreService{
 
     @Override
     public void update(Membre membre) throws ServiceException {
+        
         IMembreDao membreDao = MembreDao.getInstance();
         try {
             if (membre.getNom() == null || membre.getNom() == "" || membre.getPrenom() == null || membre.getPrenom() == ""){

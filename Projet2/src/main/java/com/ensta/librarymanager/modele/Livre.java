@@ -9,7 +9,6 @@ public class Livre {
 
     public Livre(){}
 
-
     public Livre(String titre, String auteur, String isbn){
         this.titre = titre;
         this.auteur = auteur;
@@ -32,8 +31,6 @@ public class Livre {
     public void setTitre(String titre){this.titre=titre;}
     public void setAuteur(String auteur){this.auteur=auteur;}
     public void setIsbn(String isbn){this.isbn=isbn;}
-
-
 
     @Override
     public String toString() {

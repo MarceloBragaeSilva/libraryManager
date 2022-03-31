@@ -141,8 +141,8 @@ public class EmpruntService implements IEmpruntService {
         try {
             boolean isDispo = empruntDao.getListCurrentByLivre(idLivre).isEmpty();
             if(isDispo)
-                System.out.println("\nBOOK "+ idLivre +" IS AVAILABLE");
-            else System.out.println("\nBOOK "+ idLivre +" IS NOT AVAILABLE");
+                System.out.println("BOOK "+ idLivre +" IS AVAILABLE");
+            else System.out.println("BOOK "+ idLivre +" IS NOT AVAILABLE");
             return isDispo;
         } catch (Exception | DaoException e) {
             throw new ServiceException("\nCould not verify Book availability.");
@@ -158,8 +158,8 @@ public class EmpruntService implements IEmpruntService {
             boolean isPossible = n_emprunts < membre.getAbonnement().getMaxCount();
 
             if(isPossible)
-                System.out.println("\nMEMBER "+ membre.getKey() +" CAN LOAN A BOOK");
-            else System.out.println("\nMEMBER "+ membre.getKey() +" CANNOT LOAN A BOOK");
+                System.out.println("MEMBER "+ membre.getKey() +" CAN LOAN A BOOK");
+            else System.out.println("MEMBER "+ membre.getKey() +" CANNOT LOAN A BOOK");
             return isPossible;
         } catch (Exception | DaoException e) {
             throw new ServiceException("\nCould not verify Loan possibility.");

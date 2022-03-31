@@ -33,17 +33,28 @@
                 </thead>
                 <tbody id="results">
                 
-                    <tr>
-                        <td>Titre du livre, <em>de Nom de l'auteur</em></td>
-                        <td>Prénom et nom du membre emprunteur</td>
-                        <td>Date de l'emprunt</td>
-                        <td>
-                            <a href="emprunt_return?id=idDeLEmprunt"><ion-icon class="table-item" name="log-in"></a>
-                        </td>
-                    </tr>
+                  <c:if test="${!list_emprunt.isEmpty()}">
+                    <c:forEach items="${list_emprunt}" var="emprunt">
+                      <tr>
+                          <td>${emprunt.livre.titre}, <em>de ${emprunt.livre.auteur}</em></td>
+                          <td>${emprunt.membre.prenom} ${emprunt.membre.nom}</td>
+                          <td>${emprunt.dateEmprunt}</td>
+                          <td>
+                            <c:choose>
+                              <c:when test="${emprunt.dateRetour == null}">
+                                <a href="emprunt_return?id=${emprunt.key}"><ion-icon class="table-item" name="log-in"></a>
+                              </c:when>
+                              <c:otherwise>
+                                ${emprunt.dateRetour}
+                              </c:otherwise>
+                            </c:choose>
+                          </td>
+                      </tr>
+                    </c:forEach>
+                  </c:if>
 
-					 <!-- TODO : parcourir la liste des emprunts en cours et les afficher selon la structure d'exemple ci-dessus -->
-					 <!-- TODO : dans le champ "retour", afficher la date de retour si elle existe, et un lien vers la page de retour si la date est vide (comme dans l'exemple ci-dessus) -->
+					 <!-- : parcourir la liste des emprunts en cours et les afficher selon la structure d'exemple ci-dessus -->
+					 <!-- : dans le champ "retour", afficher la date de retour si elle existe, et un lien vers la page de retour si la date est vide (comme dans l'exemple ci-dessus) -->
                 </tbody>
             </table>
           </div>

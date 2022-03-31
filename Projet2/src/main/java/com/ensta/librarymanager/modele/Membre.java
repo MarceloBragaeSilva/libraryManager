@@ -1,9 +1,5 @@
 package com.ensta.librarymanager.modele;
 
-import java.security.Key;
-
-import org.h2.util.AbbaLockingDetector;
-
 public class Membre {
 
     private int primary_key=0;
@@ -39,22 +35,19 @@ public class Membre {
 
     public int getKey() {return this.primary_key;}
     public String getNom() {return this.nom;}
-    public String getPrenom() {return this.nom;}
-    public String getAdresse() {return this.nom;}
-    public String getEmail() {return this.nom;}
-    public String getTelephone() {return this.nom;}
+    public String getPrenom() {return this.prenom;}
+    public String getAdresse() {return this.adresse;}
+    public String getEmail() {return this.email;}
+    public String getTelephone() {return this.telephone;}
     public Abonnement getAbonnement(){return this.abonnement;}
 
     public void setKey(int primary_key){this.primary_key=primary_key;}
     public void setNom(String nom){this.nom = nom;}
     public void setPrenom(String prenom){this.prenom = prenom;}
-    public void setAdress(String add){this.adresse = add;}
+    public void setAdresse(String add){this.adresse = add;}
     public void setEmail(String email){this.email = email;}
     public void setTelephone(String tel){this.telephone = tel;}
     public void setAbonnement(Abonnement ab){this.abonnement = ab;}
-
-
-
 
     @Override
     public String toString() {

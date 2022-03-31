@@ -10,6 +10,5 @@ public enum Abonnement {
 
     public int getMaxCount(){
         return maxCount;
-
     }
 }

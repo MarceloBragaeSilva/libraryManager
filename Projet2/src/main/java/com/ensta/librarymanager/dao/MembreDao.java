@@ -34,14 +34,14 @@ public class MembreDao implements IMembreDao{
             ResultSet resultSet = stmt.executeQuery();
 
             while(resultSet.next()){
-            int id = resultSet.getInt("id");
-            String nom = resultSet.getString("nom");
-            String prenom = resultSet.getString("prenom");
-            String email = resultSet.getString("email");
-            String tel = resultSet.getString("telephone");
-            String adr = resultSet.getString("adresse");
-            String abon = resultSet.getString("abonnement");
-            membres.add(new Membre(id,nom, prenom, email, tel, adr, Abonnement.valueOf(abon)));
+                int id = resultSet.getInt("id");
+                String nom = resultSet.getString("nom");
+                String prenom = resultSet.getString("prenom");
+                String adr = resultSet.getString("adresse");
+                String email = resultSet.getString("email");
+                String tel = resultSet.getString("telephone");
+                String abon = resultSet.getString("abonnement");
+                membres.add(new Membre(id,nom, prenom, adr,email, tel, Abonnement.valueOf(abon)));
             }
             
 
@@ -54,9 +54,8 @@ public class MembreDao implements IMembreDao{
             e.printStackTrace();
             throw new DaoException();
         }
-    
-
     }
+
 	public Membre getById(int id) throws DaoException{
         try{
             Connection connection = ConnectionManager.getConnection();
@@ -71,11 +70,11 @@ public class MembreDao implements IMembreDao{
             int id_1 = resultSet.getInt("id");
             String nom = resultSet.getString("nom");
             String prenom = resultSet.getString("prenom");
+            String adr = resultSet.getString("adresse");
             String email = resultSet.getString("email");
             String tel = resultSet.getString("telephone");
-            String adr = resultSet.getString("adresse");
             String abon = resultSet.getString("abonnement");
-            membreId = new Membre(id_1,nom, prenom, email, tel, adr, Abonnement.valueOf(abon));
+            membreId = new Membre(id_1,nom, prenom, adr, email, tel, Abonnement.valueOf(abon));
             
             resultSet.close();
             stmt.close();
@@ -117,6 +116,7 @@ public class MembreDao implements IMembreDao{
         }
     }
 	public void update(Membre membre) throws DaoException{
+        
         try{
             Connection connection = ConnectionManager.getConnection();
             PreparedStatement stmt = connection.prepareStatement("UPDATE membre SET nom = ?, prenom = ?,"+
@@ -136,7 +136,6 @@ public class MembreDao implements IMembreDao{
             e.printStackTrace();
             throw new DaoException();
         }
-
     }
 
 	public void delete(int id) throws DaoException{
@@ -177,4 +176,5 @@ public class MembreDao implements IMembreDao{
             throw new DaoException();
         }
     }
+    
 }
